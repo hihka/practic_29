@@ -1,0 +1,87 @@
+
+  <!DOCTYPE html>
+  <html lang="ru">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Подарки от ИИ</title>
+      <style>
+          body {
+              background-image: url("{{ url_for('static', filename='img/background-desktop.png') }}");
+              background-size: cover;
+              font-family: 'Arial', sans-serif;
+              text-align: center;
+              color: #fff;
+              padding: 0; 
+              margin: 0; 
+          }
+          @media (max-width: 768px) {
+              body {
+                  background-image: url("{{ url_for('static', filename='img/background-mobile.png') }}");
+              }
+          }
+          h1 {
+              font-size: 2.5em; 
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+              margin: 20px 0;
+          }
+          .description {
+              font-size: 1.2em;
+              margin: 20px auto;
+              max-width: 90%; 
+              background: rgba(0, 0, 0, 0.5);
+              padding: 15px; 
+              border-radius: 10px;
+          }
+          .input-field {
+              margin-top: 20px;
+              padding: 10px;
+              font-size: 1em;
+              width: 90%; 
+              max-width: 400px; 
+              border-radius: 5px;
+              border: none;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          }
+          .submit-button {
+              margin-top: 20px;
+              padding: 10px 20px; 
+              font-size: 1.2em;
+              color: #fff;
+              background-color: #ff4500;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background-color 0.3s;
+              width: 90%; 
+              max-width: 400px; 
+          }
+          .submit-button:hover {
+              background-color: #ff6347;
+          }
+          .gift-display {
+              margin-top: 20px;
+              background: rgba(0, 0, 0, 0.5);
+              padding: 15px;
+              border-radius: 10px;
+              display: {% if gift_name %} block {% else %} none {% endif %};
+          }
+      </style>
+  </head>
+  <body>
+      <h1>Подарки от ИИ</h1>
+      <div class="description">
+          Добро пожаловать на сайт "Подарки от ИИ"! Мы поможем вам выбрать идеальный подарок для ваших близких на Новый год. <br>
+          Пример: Подарок для мамы. Она любит готовить, вязать, вышивать.
+      </div>
+      <form method="POST" onsubmit="clearInput(); saveInput();">
+          <input type="text" name="description" class="input-field" placeholder="Опишите человека..." />
+          <br>
+          <button type="submit" class="submit-button">Выбрать подарок</button>
+      </form>
+      <div class="gift-display">
+          <h2>Вот подарок который может понравиться вашему близкому человеку:<br>{{ gift_name }}</h2>
+      </div>
+  </body>
+</html>
+  
